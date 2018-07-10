@@ -53,12 +53,15 @@ nodes.forEach(function(source) {
       successors = model.getSuccessorsOf(sourceId);
 
   successors.forEach(function(targetId) {
-    if(sourceId === targetId) {
-      source.reflexive = true;
-      return;
-    }
+    
 
     var target = nodes.filter(function(node) { return node.id === targetId; })[0];
+        
+        if(sourceId === targetId) {
+      source.reflexive = true;
+          links.push({source: source, target: target, left: false, right: true });
+      return;
+    }
 
     if(sourceId < targetId) {
       links.push({source: source, target: target, left: false, right: true });
