@@ -53,14 +53,14 @@ nodes.forEach(function(source) {
       successors = model.getSuccessorsOf(sourceId);
 
   successors.forEach(function(targetId) {
-    /*if(sourceId === targetId) {
+    if(sourceId === targetId) {
       source.reflexive = true;
       return;
-    }*/
+    }
 
     var target = nodes.filter(function(node) { return node.id === targetId; })[0];
 
-    if(sourceId <= targetId) {
+    if(sourceId < targetId) {
       links.push({source: source, target: target, left: false, right: true });
       return;
     }
@@ -369,7 +369,7 @@ function restart() {
     .attr('r', 12)
     .style('fill', function(d) { return (d === selected_node) ? d3.rgb(colors(d.id)).brighter().toString() : colors(d.id); })
     .style('stroke', function(d) { return d3.rgb(colors(d.id)).darker().toString(); })
-    .classed('reflexive', function(d) { return d.reflexive; })
+    .classed('reflexive', function(d) { console.log(d); return d.reflexive; })
     .on('mouseover', function(d) {
       if(appMode !== MODE.EDIT || !mousedown_node || d === mousedown_node) return;
       // enlarge target node
