@@ -60,7 +60,7 @@ nodes.forEach(function(source) {
 
     var target = nodes.filter(function(node) { return node.id === targetId; })[0];
 
-    if(sourceId < targetId) {
+    if(sourceId <= targetId) {
       links.push({source: source, target: target, left: false, right: true });
       return;
     }
